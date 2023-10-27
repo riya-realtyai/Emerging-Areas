@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/BroadLocalityGurgaon_4326_2.js"></script>
+        <script src="data/Golfcourseextensionsocieties_3.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[28.335253313757104,76.86418377199061],[28.52293445855417,77.1879625322172]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OpenStreetMap_0');
+        map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
+        var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OpenStreetMap_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OpenStreetMap_0;
+        map.addLayer(layer_OpenStreetMap_0);
+        map.createPane('pane_GeoIQPopulation_1km_1');
+        map.getPane('pane_GeoIQPopulation_1km_1').style.zIndex = 401;
+        var img_GeoIQPopulation_1km_1 = 'data/GeoIQPopulation_1km_1.png';
+        var img_bounds_GeoIQPopulation_1km_1 = [[28.345891,76.871181],[28.541739041,77.122606626]];
+        var layer_GeoIQPopulation_1km_1 = new L.imageOverlay(img_GeoIQPopulation_1km_1,
+                                              img_bounds_GeoIQPopulation_1km_1,
+                                              {pane: 'pane_GeoIQPopulation_1km_1'});
+        bounds_group.addLayer(layer_GeoIQPopulation_1km_1);
+        map.addLayer(layer_GeoIQPopulation_1km_1);
+        function pop_BroadLocalityGurgaon_4326_2(feature, layer) {
+        }
+
+        function style_BroadLocalityGurgaon_4326_2_0() {
+            return {
+                pane: 'pane_BroadLocalityGurgaon_4326_2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_BroadLocalityGurgaon_4326_2');
+        map.getPane('pane_BroadLocalityGurgaon_4326_2').style.zIndex = 402;
+        map.getPane('pane_BroadLocalityGurgaon_4326_2').style['mix-blend-mode'] = 'normal';
+        var layer_BroadLocalityGurgaon_4326_2 = new L.geoJson(json_BroadLocalityGurgaon_4326_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BroadLocalityGurgaon_4326_2',
+            layerName: 'layer_BroadLocalityGurgaon_4326_2',
+            pane: 'pane_BroadLocalityGurgaon_4326_2',
+            onEachFeature: pop_BroadLocalityGurgaon_4326_2,
+            style: style_BroadLocalityGurgaon_4326_2_0,
+        });
+        bounds_group.addLayer(layer_BroadLocalityGurgaon_4326_2);
+        map.addLayer(layer_BroadLocalityGurgaon_4326_2);
+        function pop_Golfcourseextensionsocieties_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Address'] !== null ? autolinker.link(feature.properties['Address'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Project'] !== null ? autolinker.link(feature.properties['Project'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['path'] !== null ? autolinker.link(feature.properties['path'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Source.Name'] !== null ? autolinker.link(feature.properties['gce_Source.Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Address'] !== null ? autolinker.link(feature.properties['gce_Address'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Phase of Society'] !== null ? autolinker.link(feature.properties['gce_Phase of Society'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Property type'] !== null ? autolinker.link(feature.properties['gce_Property type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Construction Status'] !== null ? autolinker.link(feature.properties['gce_Construction Status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Possession on Year'] !== null ? autolinker.link(feature.properties['gce_Possession on Year'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Units'] !== null ? autolinker.link(feature.properties['gce_Units'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Final Price Rate'] !== null ? autolinker.link(feature.properties['gce_Final Price Rate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Price Rate'] !== null ? autolinker.link(feature.properties['gce_Price Rate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Calculated Price Rate'] !== null ? autolinker.link(feature.properties['gce_Calculated Price Rate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_3BHK_area'] !== null ? autolinker.link(feature.properties['gce_3BHK_area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_FreshSalePrice'] !== null ? autolinker.link(feature.properties['gce_FreshSalePrice'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Commercial Rent'] !== null ? autolinker.link(feature.properties['gce_Commercial Rent'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Commercial Buy'] !== null ? autolinker.link(feature.properties['gce_Commercial Buy'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Commercial Rent from Buy'] !== null ? autolinker.link(feature.properties['gce_Commercial Rent from Buy'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Rental 3BHK'] !== null ? autolinker.link(feature.properties['gce_Rental 3BHK'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Rental 2BHK'] !== null ? autolinker.link(feature.properties['gce_Rental 2BHK'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Rental 4BHk'] !== null ? autolinker.link(feature.properties['gce_Rental 4BHk'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Buy  3BHK'] !== null ? autolinker.link(feature.properties['gce_Buy  3BHK'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Buy 2BHK'] !== null ? autolinker.link(feature.properties['gce_Buy 2BHK'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Buy 4BHK'] !== null ? autolinker.link(feature.properties['gce_Buy 4BHK'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Rent from Buy'] !== null ? autolinker.link(feature.properties['gce_Rent from Buy'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Area_largest'] !== null ? autolinker.link(feature.properties['gce_Area_largest'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Calculated_BuyValue'] !== null ? autolinker.link(feature.properties['gce_Calculated_BuyValue'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Rent from Calculated Buy'] !== null ? autolinker.link(feature.properties['gce_Rent from Calculated Buy'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Final Rent'] !== null ? autolinker.link(feature.properties['gce_Final Rent'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Area in Acres'] !== null ? autolinker.link(feature.properties['gce_Area in Acres'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Latitude'] !== null ? autolinker.link(feature.properties['gce_Latitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Longitude'] !== null ? autolinker.link(feature.properties['gce_Longitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Rent Type'] !== null ? autolinker.link(feature.properties['gce_Rent Type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Unit X Rent'] !== null ? autolinker.link(feature.properties['gce_Unit X Rent'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Ready to Move'] !== null ? autolinker.link(feature.properties['gce_Ready to Move'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Under Construction'] !== null ? autolinker.link(feature.properties['gce_Under Construction'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_Comment'] !== null ? autolinker.link(feature.properties['gce_Comment'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_field_36'] !== null ? autolinker.link(feature.properties['gce_field_36'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gce_field_37'] !== null ? autolinker.link(feature.properties['gce_field_37'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Golfcourseextensionsocieties_3_0(feature) {
+            switch(String(feature.properties['gce_Rent Type'])) {
+                case 'High Rent':
+                    return {
+                pane: 'pane_Golfcourseextensionsocieties_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(63,0,125,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Low Rent':
+                    return {
+                pane: 'pane_Golfcourseextensionsocieties_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(156,156,226,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Medium Rent':
+                    return {
+                pane: 'pane_Golfcourseextensionsocieties_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(126,92,203,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'No Rent':
+                    return {
+                pane: 'pane_Golfcourseextensionsocieties_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,4,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_Golfcourseextensionsocieties_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Golfcourseextensionsocieties_3');
+        map.getPane('pane_Golfcourseextensionsocieties_3').style.zIndex = 403;
+        map.getPane('pane_Golfcourseextensionsocieties_3').style['mix-blend-mode'] = 'normal';
+        var layer_Golfcourseextensionsocieties_3 = new L.geoJson(json_Golfcourseextensionsocieties_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Golfcourseextensionsocieties_3',
+            layerName: 'layer_Golfcourseextensionsocieties_3',
+            pane: 'pane_Golfcourseextensionsocieties_3',
+            onEachFeature: pop_Golfcourseextensionsocieties_3,
+            style: style_Golfcourseextensionsocieties_3_0,
+        });
+        bounds_group.addLayer(layer_Golfcourseextensionsocieties_3);
+        map.addLayer(layer_Golfcourseextensionsocieties_3);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Golf course extension societies<br /><table><tr><td style="text-align: center;"><img src="legend/Golfcourseextensionsocieties_3_HighRent0.png" /></td><td>High Rent</td></tr><tr><td style="text-align: center;"><img src="legend/Golfcourseextensionsocieties_3_LowRent1.png" /></td><td>Low Rent</td></tr><tr><td style="text-align: center;"><img src="legend/Golfcourseextensionsocieties_3_MediumRent2.png" /></td><td>Medium Rent</td></tr><tr><td style="text-align: center;"><img src="legend/Golfcourseextensionsocieties_3_NoRent3.png" /></td><td>No Rent</td></tr><tr><td style="text-align: center;"><img src="legend/Golfcourseextensionsocieties_3_4.png" /></td><td></td></tr></table>': layer_Golfcourseextensionsocieties_3,'<img src="legend/BroadLocalityGurgaon_4326_2.png" /> BroadLocalityGurgaon_4326': layer_BroadLocalityGurgaon_4326_2,"GeoIQPopulation_1km": layer_GeoIQPopulation_1km_1,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        resetLabels([layer_BroadLocalityGurgaon_4326_2]);
+        map.on("zoomend", function(){
+            resetLabels([layer_BroadLocalityGurgaon_4326_2]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_BroadLocalityGurgaon_4326_2]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_BroadLocalityGurgaon_4326_2]);
+        });
+        </script>
+    </body>
+</html>
